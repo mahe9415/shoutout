@@ -1,0 +1,9 @@
+ .img-responsive{
+  height:80%;
+  width:100%;
+}
+
+.navbar{
+  opacity: 0.9;
+    filter: alpha(opacity=50);
+}

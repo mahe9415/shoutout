@@ -1,0 +1,14 @@
+.navbar{
+  opacity: 0.9;
+    filter: alpha(opacity=50);
+}
+.img-responsive{
+  height:80%;
+  width:100%;
+
+}
+p {
+    text-indent: 50px;
+    text-align: justify;
+    letter-spacing: 3px;
+}
