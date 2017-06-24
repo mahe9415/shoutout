@@ -2,6 +2,41 @@
   opacity: 0.9;
     filter: alpha(opacity=50);
 }
+/*my csssssssssssssssssssssssssssssssssssssssssssssssssss*/
+.card{
+    width:320px;
+    height:314px;
+    border:1px solid gray;
+    border-radius: 4px;
+    margin:10px 30px;
+
+} 
+.card .img-fluid{
+    width:318px;
+}
+.card:hover{
+  box-shadow: 0 14px 15px 0 rgba(0,0,0,.17);
+}
+.des{
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  overflow:hidden;
+  height:60px;
+  /*text-align: center;*/
+}
+.wrapper{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px;
+  }
+  .footer{
+    
+  }
+
+/*endssssssssssssssssssssssssssssssssssssssssssssssssssssssssss*/
+
 div.button {
     color: white;
     text-align: right;

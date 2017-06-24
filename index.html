@@ -2,12 +2,13 @@
 <html>
 
 <head>
+    <title>Shoutout.org</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
-    <title>Shoutout.org</title>
+    <script src="https://unpkg.com/vue"></script>
 </head>
 
 <body onload="onLoad()">
@@ -39,91 +40,16 @@
 <li onclick class="fb-login-button" data-width="28px" data-max-rows="1"
 data-size="medium" data-button-type="login_with" data-show-faces="true"
 data-auto-logout-link="true" data-use-continue-as="true"></li>-->
-
 </ul>
-
                 </div>
             </div>
           </div>
         </br></br></br>
             <img class="img-responsive" src="assets/images/shoutout1.png" alt="contact_us">
 </header>
-
     <!-- Header block ends here -->
 
-    <section class="so_content">
-        <div class="campaign-grid">
-            <div class="campaign-grid-item">
-                <div class="image">
-                    <a target="" href="">
-                      <img src="assets/images/jali.jpg" alt="jallikattu">
-                    </a>
-                  <div class="desc"> Add a description </div>
-                </div>
-            </div>
-
-            <div class="campaign-grid-item">
-                <div class="image">
-                    <a target="" href="">
-                        <img src="assets/images/madurai1.jpg" alt="madurai road problem">
-                    </a>
-                    <div class="desc"> Add a description </div>
-                </div>
-            </div>
-            <div class="campaign-grid-item">
-                <div class="image">
-                    <a target="" href="">
-                        <img src="assets/images/childLabours.jpg" alt="jallikattu">
-                    </a>
-                    <div class="desc"> the employment of children in an industry or business </div>
-                </div>
-            </div>
-            <div class="campaign-grid-item">
-                <div class="image">
-                    <a target="" href="">
-                        <img src="assets/images/studentProtest.jpg" alt="student protest">
-                    </a>
-                    <div class="desc">Add a description</div>
-                </div>
-            </div>
-            <div class="campaign-grid-item">
-                <div class="image">
-                    <a target="" href="">
-                        <img src="assets/images/methaneGas.jpg" alt="jallikattu">
-                    </a>
-                    <div class="desc"> Add a description </div>
-              </div>
-        </div>
-        <div class="campaign-grid-item">
-            <div class="image">
-                <a target="" href="">
-                    <img src="assets/images/neduvasal.jpeg" alt="jallikattu">
-                </a>
-                <div class="desc">Add a description</div>
-            </div>
-        </div>
-
-        <div class="campaign-grid-item">
-            <div class="image">
-                <a target="" href="">
-                    <img src="assets/images/protest-by-tamil-nadu-farmers.jpg" alt="neduvasal farmer">
-                </a>
-                <div class="desc">protest by tamilnadu farmers jantar mantar delhi wearing garlands of skulls</div>
-            </div>
-        </div>
-
-        <div class="campaign-grid-item">
-            <div class="image">
-                <a target="" href="">
-                    <img src="assets/images/studentProtest.jpg" alt="student protest">
-                </a>
-                <div class="desc">Add a description</div>
-            </div>
-        </div>
-
-      </div>
-    </section>
-  </br>
+      </br>
 </br>
     <!--  Footer block start here -->
   <!--  <footer class="navbar-fixed-bottom">
@@ -134,7 +60,14 @@ data-auto-logout-link="true" data-use-continue-as="true"></li>-->
         </div>
         <footer>
             Footer block ends here -->
+<div class="container wrapper">
+<div v-for="card of grids">
+<!-- {{card}} -->
+    <cards :src=card.photo :des=card.description> </cards>
+    <!-- <cards src="assets/images/methaneGas.jpg" des="card.description"> </cards> -->
+    </div>
 
+</div>
 
 <!--share button-->
 <div class="col-sm-12 " align="right">
@@ -163,6 +96,58 @@ data-auto-logout-link="true" data-use-continue-as="true"></li>-->
             <script src="javascript/lib/masonry.pkgd.js"></script>
             <script src="javascript/app.js"></script>
             <script src="javascript/facebook.js"></script>
+            <script type="text/javascript">
+
+  Vue.component('cards',{
+    props:['src','des'],
+    template:`<div class="card">
+            <img class="img-fluid" :src="src">
+        <div class="des">{{des}} </div>
+        <div class="col-sm-12 " align="right">
+<div id="share" class="btn btn-success footer clearfix" @click="fbshare">Share</div>
+</div>
+</div>`,
+methods:{
+  fbshare(response){
+ {
+  FB.ui({
+  method: 'share',
+    display: 'popup',
+    href: 'http://dev.shoutouthub.org/',
+  }, function(response){
+    if(response){
+      alert(this.camp_id)
+      $.ajax({
+      url:'https://murmuring-plateau-67538.herokuapp.com/count/'+this.camp_id,
+      method:'POST',
+      success:(res)=>{
+        console.log(res)
+      }})
+    }
+
+  });
+       }
+  }
+}
+  })
+  const vm1=new Vue({
+    el:'.wrapper',
+    data(){
+      return{
+        grids:''
+      }
+    },
+    mounted(){
+    $.ajax({
+      url:'https://murmuring-plateau-67538.herokuapp.com/get_camps',
+      method:'GET',
+      success:(res)=>{
+        vm1.grids=res
+      }
+    })
+  }
+  })
+</script>
 </body>
 
 </html>
