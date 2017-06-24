@@ -63,17 +63,11 @@ data-auto-logout-link="true" data-use-continue-as="true"></li>-->
 <div class="container wrapper">
 <div v-for="card of grids">
 <!-- {{card}} -->
-    <cards :src=card.photo :des=card.description> </cards>
+    <cards :src=card.photo :des=card.description :id=card.camp_id :count=card.count> </cards>
     <!-- <cards src="assets/images/methaneGas.jpg" des="card.description"> </cards> -->
     </div>
 
 </div>
-
-<!--share button-->
-<div class="col-sm-12 " align="right">
-<div id="share" class="btn btn-success clearfix">Share</div>
-</div>
-
             <footer>
               <div id="footer" class="contact-us-footer">
                    <div class="container ">
@@ -99,12 +93,14 @@ data-auto-logout-link="true" data-use-continue-as="true"></li>-->
             <script type="text/javascript">
 
   Vue.component('cards',{
-    props:['src','des'],
-    template:`<div class="card">
+    props:['src','des','id','count'],
+    template:`<div :href=id class="card" @click="opentab(id)">
             <img class="img-fluid" :src="src">
         <div class="des">{{des}} </div>
-        <div class="col-sm-12 " align="right">
+<div class="footer col-12">
+        <div class="count">Shares: {{count}}</div>
 <div id="share" class="btn btn-success footer clearfix" @click="fbshare">Share</div>
+</div>
 </div>
 </div>`,
 methods:{
@@ -114,7 +110,7 @@ methods:{
   method: 'share',
     display: 'popup',
     href: 'http://dev.shoutouthub.org/',
-  }, function(response){
+  },function(response){
     if(response){
       alert(this.camp_id)
       $.ajax({
@@ -128,8 +124,10 @@ methods:{
   });
        }
   }
+,opentab(id){
+window.open('https://murmuring-plateau-67538.herokuapp.com/camp/'+id, '_blank')
 }
-  })
+}  })
   const vm1=new Vue({
     el:'.wrapper',
     data(){

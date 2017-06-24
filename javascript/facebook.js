@@ -92,12 +92,12 @@ function getFriend() {
             });
           }
 //share code
-document.getElementById('share').onclick = function(response) {
-  FB.ui({
-  method: 'share',
-    display: 'popup',
-    href: 'http://dev.shoutouthub.org/',
+// document.getElementById('share').onclick = function(response) {
+//   FB.ui({
+//   method: 'share',
+//     display: 'popup',
+//     href: 'http://dev.shoutouthub.org/',
 
-  }, function(response){});
+//   }, function(response){});
 
-       }
+//        }

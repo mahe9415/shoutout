@@ -32,7 +32,9 @@
     margin: 20px;
   }
   .footer{
-    
+    display: flex;
+    color:#4a4a4a;
+    justify-content: space-between;
   }
 
 /*endssssssssssssssssssssssssssssssssssssssssssssssssssssssssss*/
