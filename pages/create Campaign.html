@@ -68,35 +68,26 @@
         	<h3 class="panel-title">Campaign Form</h3>
 	</div>
 <div class="panel-body">
-    <form action="https://murmuring-plateau-67538.herokuapp.com/camp" method="POST" enctype="application/x-www-form-urlencoded">
+    <form id="myform">
 <div class="col-md-12 col-sm-12">
 
   <div class="form-group col-md-6 col-sm-6">
             <label for="admin_name">Admin Name*	</label>
             <input type="text" class="form-control input-sm" name="admin_name" id="name" placeholder="Admin Name">
         </div>
-
         <div class="form-group col-md-6 col-sm-6">
             <label for="CampaignName">Campaign Name*</label>
             <input type="text" name="camp_name" class="form-control input-sm" id="CampaignName" placeholder="Campaign Name">
         </div>
-
         <div class="form-group col-md-6 col-sm-6">
             <label for="mobile">Starting Date*</label>
             <div><input type="text"class="form-control input-sm" id="datepicker" name="date" placeholder="Date">
-
-
-
-
                 </div>
         </div>
-
-
   <div class="form-group col-md-6 col-sm-6">
 	      <label for="address">Campaign Description	*</label>
 	      <textarea  name="description" class="form-control input-sm" id="address" rows="3"></textarea>
 	   </div>
-
 
 
 
@@ -130,13 +121,30 @@
         <div class="col-md-4">
          <input type="submit" class="btn btn-info navbar-btn navbar-right" value="Submit" >
         </div>
-
-
-
 <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+$(document).ready(function(){
+$("form").submit(function(event){
+  event.preventDefault();
+  $.post('https://murmuring-plateau-67538.herokuapp.com/camp',$(this).serialize(),function(data){
+    alert(data.message)
+    window.location.href='/'
+  })
+})})
+// Wire form to submit into modal
+            // $("#myform").submit(function(event) {
+            //     event.preventDefault();
+                // $.ajax({
+                //     data: $(this).serialize(),
+                //     type: 'POST',
+                //     url: 'https://murmuring-plateau-67538.herokuapp.com/camp',
+                //     contentType :"application/x-www-form-urlencoded",
+                //     success: function(response){
+                //     alert(response)
+                //         const response= JSON.stringify(response)
+                //         alert(response)
+                //     }
+                // });
+            // });
   </script>
                </script>
 

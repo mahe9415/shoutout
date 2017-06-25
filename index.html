@@ -106,15 +106,16 @@ data-auto-logout-link="true" data-use-continue-as="true"></li>-->
 methods:{
   fbshare(response){
  {
+  const camp_id=this.id;
+
   FB.ui({
   method: 'share',
     display: 'popup',
-    href: 'http://dev.shoutouthub.org/',
+    href: 'www.dev.shoutouthub.org/pages/camp.html?id='+camp_id,
   },function(response){
     if(response){
-      alert(this.camp_id)
       $.ajax({
-      url:'https://murmuring-plateau-67538.herokuapp.com/count/'+this.camp_id,
+      url:'https://murmuring-plateau-67538.herokuapp.com/count/'+camp_id,
       method:'POST',
       success:(res)=>{
         console.log(res)
@@ -125,7 +126,7 @@ methods:{
        }
   }
 ,opentab(id){
-window.open('https://murmuring-plateau-67538.herokuapp.com/camp/'+id, '_blank')
+window.open('/pages/camp.html?id='+id, '_blank')
 }
 }  })
   const vm1=new Vue({

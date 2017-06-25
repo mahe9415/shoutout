@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../javascript/lib/jquery-3.1.1.min.js"></script>
+<body>
+	
+</body>
+<script type="text/javascript">
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+$(document).ready(function(){
+    $.ajax({
+    	url:'https://murmuring-plateau-67538.herokuapp.com/camp/'+getUrlParameter('id'),
+    	method:'GET',
+    	success:(res)=>{
+    		
+    		var div='<div>'+JSON.stringify(res)+'</div>'
+    		$('body').html(div);
+    	}
+    })
+    });
+</script>
+</html>

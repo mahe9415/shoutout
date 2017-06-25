@@ -13,6 +13,7 @@
 } 
 .card .img-fluid{
     width:318px;
+    height:212px;
 }
 .card:hover{
   box-shadow: 0 14px 15px 0 rgba(0,0,0,.17);
